@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <title>User List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" href="bootstrap.min.css" th:href="@{bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container">
+    <h1>My Products</h1>
+    <div class="row" th:each="product : ${products}">
+        <div class="col-md-9">
+            <form th:method="put" th:action="@{/products/{id}">
+                <input type="hidden" name="id" th:value="${5}" />
+                <input type="hidden" name="name" th:value="${'john'}" />
+                <input type="hidden" name="description" th:value="${'john wicj'}" />
+                <input type="hidden" name="price" th:value="${1000}}"/>
+                <input type="submit" value="update"/>
+                <span th:text="${product.description}"></span>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <form th:method="delete" th:action="@{/products/}">
+                <input type="hidden" name="id" th:value="${product.id}" />
+                <button class="button u-full-width" type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <form method="post" th:action="@{/products}" th:object="${newProduct}">
+        <div class="row">
+            <div class="nine columns">
+                <input type="text" placeholder="Description of the product" class="u-full-width" th:field="*{description}" />
+            </div>
+            <div class="three columns">
+                <button type="submit" class="button-primary u-full-width">Add</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
